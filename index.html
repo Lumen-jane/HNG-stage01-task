@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Number API</title>
+    <h1>Hey There!  It's Maryjane Enecukwu here, let's play a Game</h1>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f4f4f4;
+            margin: 50px;
+        }
+        h1 {
+            color: #333;
+        }
+        input {
+            padding: 10px;
+            font-size: 18px;
+            margin: 10px;
+            width: 200px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 18px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        #result {
+            margin-top: 20px;
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+    <h2>Enter a Number to Get Fun Facts!</h2>
+    <input type="number" id="numberInput" placeholder="Enter a number">
+    <button onclick="fetchNumberFacts()">Get Facts</button>
+    <div id="result"></div>
+
+    <script>
+        async function fetchNumberFacts() {
+            const number = document.getElementById("numberInput").value;
+            if (!number) {
+                alert("Please enter a number!");
+                return;
+            }
+
+            try {
+                const response = await fetch(`http://127.0.0.1:8000/api/classify-number?number=${number}`);
+                if (!response.ok) {
+                    throw new Error("Failed to fetch data");
+                }
+
+
+                const data = await response.json();
+                document.getElementById("result").textContent = JSON.stringify(data, null, 2);
+            } catch (error) {
+                document.getElementById("result").textContent = "Error fetching data!";
+                console.error(error);
+            }
+
+            
+            
+
+            const response = await fetch(`https://your-api-url.onrender.com/api/classify-number?number=${number}`);
+            const data = await response.json();
+
+            document.getElementById("result").innerHTML = `
+                <p><strong>Number:</strong> ${data.number}</p>
+                <p><strong>Prime:</strong> ${data.is_prime}</p>
+                <p><strong>Even:</strong> ${data.is_even}</p>
+                <p><strong>Armstrong:</strong> ${data.is_armstrong}</p>
+                <p><strong>Fun Fact:</strong> ${data.fun_fact}</p>
+            `;
+        }
+    </script>
+</body>
+</html>
+
+
+
+
+<!-- trial and error  -->
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Number Facts</title>
+</head>
+<body>
+    <h2>Enter a number to get fun facts</h2>
+    <input type="number" id="numberInput" placeholder="Enter a number">
+    <button onclick="getNumberFacts()">Get Facts</button>
+
+    <h3>Results:</h3>
+    <pre id="result"></pre>
+
+    <script>
+        async function getNumberFacts() {
+            const number = document.getElementById("numberInput").value;
+            if (!number) {
+                alert("Please enter a number!");
+                return;
+            }
+
+            try {
+                const response = await fetch(`http://127.0.0.1:8000/api/classify-number?number=${number}`);
+                if (!response.ok) {
+                    throw new Error("Failed to fetch data");
+                }
+
+                const data = await response.json();
+                document.getElementById("result").textContent = JSON.stringify(data, null, 2);
+            } catch (error) {
+                document.getElementById("result").textContent = "Error fetching data!";
+                console.error(error);
+            }
+        }
+    </script>
+</body>
+</html>
+ -->
