@@ -1,3 +1,4 @@
+
 annotated-types==0.7.0
 anyio==4.8.0
 click==8.1.8
@@ -10,3 +11,7 @@ sniffio==1.3.1
 starlette==0.45.3
 typing_extensions==4.12.2
 uvicorn==0.34.0
+
+fastapi==0.95.0
+uvicorn==0.18.2
+08c789d5caa71ada332dd30ba702979a6e7afebb
