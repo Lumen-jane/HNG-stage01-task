@@ -1,0 +1,7 @@
+*.pyc
+__pycache__/
+tests/
+.git/
+*.md
+.env
+*.log
